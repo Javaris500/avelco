@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+@theme {
+  /* Surfaces — dark mode (landing is dark only) */
+  --color-bg: #1a1d23;
+  --color-surface: #393e46;
+  --color-surface-muted: #2a2e36;
+  --color-surface-elevated: #4a5058;
+
+  /* Borders */
+  --color-border: #4a5058;
+  --color-border-strong: #5e6670;
+
+  /* Text */
+  --color-text: #eeeeee;
+  --color-text-muted: #a0a8b0;
+  --color-text-subtle: #6e7681;
+
+  /* Accent — one color only, 10% max per page */
+  --color-accent: #0092ca;
+  --color-accent-hover: #00a8e6;
+  --color-accent-soft: rgb(0 146 202 / 0.1);
+  --color-focus-ring: rgb(0 146 202 / 0.6);
+
+  /* Semantic feedback */
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #0092ca;
+
+  /* Fonts — variables provided by next/font in layout.tsx */
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif-accent: var(--font-serif-accent);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--color-accent-soft);
+  color: var(--color-text);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Serif italic emphasis used inside display headlines */
+.italic-emph {
+  font-family: var(--font-serif-accent);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  font-feature-settings: "liga" 1, "calt" 1, "dlig" 1;
+  /* Optical size correction — serif italics at heavy sizes often read slightly
+     larger than the sans they're paired with; nudge down a touch. */
+  font-size: 0.96em;
+  /* Subtle baseline nudge — serif italic descenders sit lower than sans;
+     lift slightly so the visual baseline aligns. */
+  display: inline-block;
+  transform: translateY(0.04em);
+}
+
+@keyframes heroDriftA {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(4%, 6%, 0); }
+}
+
+@keyframes heroDriftB {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-3%, -5%, 0); }
+}
+
+@utility animate-hero-drift-a {
+  animation: heroDriftA 12s ease-in-out infinite;
+}
+
+@utility animate-hero-drift-b {
+  animation: heroDriftB 14s ease-in-out infinite;
+}
+
+@utility bg-grid-dots {
+  background-image: radial-gradient(circle at 1px 1px, rgb(160 168 176 / 0.12) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+@keyframes ctaPulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+@utility animate-cta-pulse {
+  animation: ctaPulse 2.4s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
