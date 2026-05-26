@@ -9,6 +9,8 @@ import "./globals.css";
 import { FilmGrain } from "@/components/landing/FilmGrain";
 import { ScrollProgress } from "@/components/landing/ScrollProgress";
 import { SectionRail } from "@/components/landing/SectionRail";
+import { BookingProvider } from "@/components/booking/BookingContext";
+import { BookingFormModal } from "@/components/booking/BookingFormModal";
 
 const display = Space_Grotesk({
   subsets: ["latin"],
@@ -41,7 +43,7 @@ const serifAccent = Fraunces({
 export const metadata: Metadata = {
   title: "Avel — Built with intent.",
   description:
-    "Productized software builds. Fixed scope, fixed price, shipped in weeks — not quarters.",
+    "AI agents, chatbots, and on-site builds. Fixed price, shipped in weeks.",
 };
 
 export default function RootLayout({
@@ -50,12 +52,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${display.variable} ${sans.variable} ${mono.variable} ${serifAccent.variable} h-full antialiased`}
+      className={`${display.variable} ${sans.variable} ${mono.variable} ${serifAccent.variable} h-full antialiased no-scrollbar`}
     >
-      <body className="min-h-full flex flex-col bg-bg text-text">
-        <ScrollProgress />
-        <SectionRail />
-        {children}
+      <body className="no-scrollbar min-h-full flex flex-col bg-bg text-text">
+        <BookingProvider>
+          <ScrollProgress />
+          <SectionRail />
+          {children}
+          <BookingFormModal />
+        </BookingProvider>
         <FilmGrain />
       </body>
     </html>

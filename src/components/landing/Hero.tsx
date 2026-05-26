@@ -4,6 +4,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { useRef } from "react";
 import { Button } from "@/components/ui/Button";
 import { MagneticWrap } from "./MagneticWrap";
+import { useBooking } from "@/components/booking/BookingContext";
 
 type Token = { text: string; italic?: boolean; trailing?: string };
 
@@ -21,6 +22,7 @@ const HEADLINE: Token[] = [
 
 export function Hero() {
   const reduce = useReducedMotion();
+  const { setOpen } = useBooking();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -107,7 +109,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: subheadDelay, ease: "easeOut" }}
           className="mx-auto mt-10 max-w-2xl text-lg text-text-muted md:text-xl"
         >
-          Fixed scope. Fixed price. Shipped in weeks, not quarters.
+          AI agents. Chatbots. On-site builds. Fixed price, shipped in weeks.
         </motion.p>
 
         {/* CTA */}
@@ -118,15 +120,15 @@ export function Hero() {
           className="mt-12 flex flex-wrap items-center justify-center gap-5"
         >
           <MagneticWrap>
-            <Button href="#cta" size="lg">
+            <Button onClick={() => setOpen(true)} size="lg">
               Book a call →
             </Button>
           </MagneticWrap>
           <a
-            href="#how-it-works"
+            href="#services"
             className="text-sm text-text-muted underline-offset-4 hover:text-text hover:underline"
           >
-            See how it works
+            See what we build
           </a>
         </motion.div>
       </div>

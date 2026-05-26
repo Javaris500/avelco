@@ -5,10 +5,9 @@ import { useEffect, useState } from "react";
 const SECTIONS: { id: string; label: string }[] = [
   { id: "problem", label: "01 Problem" },
   { id: "services", label: "02 Services" },
-  { id: "how-it-works", label: "03 Process" },
-  { id: "the-system", label: "04 System" },
-  { id: "faq", label: "05 FAQ" },
-  { id: "cta", label: "06 Book" },
+  { id: "the-system", label: "03 System" },
+  { id: "faq", label: "04 FAQ" },
+  { id: "cta", label: "05 Book" },
 ];
 
 export function SectionRail() {

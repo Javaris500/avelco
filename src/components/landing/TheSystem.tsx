@@ -29,7 +29,7 @@ export function TheSystem() {
     >
       <div className="mx-auto w-full max-w-6xl px-6 py-28 md:py-44">
         <Reveal>
-          <Eyebrow number="04">Proof</Eyebrow>
+          <Eyebrow number="03">Proof</Eyebrow>
           <h2
             className="max-w-4xl font-display font-bold leading-[1.02] tracking-tight text-text"
             style={{ fontSize: "clamp(3rem, 7.5vw, 7rem)" }}

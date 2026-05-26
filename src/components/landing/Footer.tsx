@@ -1,9 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import { MagneticWrap } from "./MagneticWrap";
 import { MegaWordmark } from "./MegaWordmark";
 import { Reveal } from "./Reveal";
+import { useBooking } from "@/components/booking/BookingContext";
 
 export function Footer() {
+  const { setOpen } = useBooking();
   return (
     <footer className="relative isolate overflow-hidden border-t border-border bg-bg">
       {/* Top accent hairline */}
@@ -44,8 +48,9 @@ export function Footer() {
             </span>
           </div>
           <MagneticWrap strength={0.3}>
-            <Link
-              href="#cta"
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
               className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-accent/50 bg-accent-soft px-8 py-4 font-display text-base font-medium tracking-tight text-text transition-[background-color,border-color,color,box-shadow] duration-300 ease-out hover:border-accent hover:bg-accent hover:text-bg hover:shadow-[0_0_32px_4px_rgb(0_146_202_/_0.4)]"
             >
               <span className="relative">Ready to ship</span>
@@ -55,7 +60,7 @@ export function Footer() {
               >
                 →
               </span>
-            </Link>
+            </button>
           </MagneticWrap>
         </Reveal>
       </div>
@@ -77,17 +82,14 @@ export function Footer() {
           <a className="hover:text-text" href="#services">
             02 Services
           </a>
-          <a className="hover:text-text" href="#how-it-works">
-            03 Process
-          </a>
           <a className="hover:text-text" href="#the-system">
-            04 System
+            03 System
           </a>
           <a className="hover:text-text" href="#faq">
-            05 FAQ
+            04 FAQ
           </a>
           <a className="hover:text-text" href="#cta">
-            06 Book
+            05 Book
           </a>
         </nav>
       </div>

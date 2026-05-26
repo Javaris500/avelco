@@ -86,7 +86,7 @@ export function FAQ() {
   return (
     <section id="faq" className="mx-auto w-full max-w-6xl px-6 py-28 md:py-44">
       <Reveal>
-        <Eyebrow number="05">FAQ</Eyebrow>
+        <Eyebrow number="04">FAQ</Eyebrow>
         <SectionHeading className="max-w-3xl">
           Before you <span className="italic-emph">book</span>.
         </SectionHeading>

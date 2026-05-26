@@ -1,5 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import type { ComponentProps, ReactNode } from "react";
+import type { MouseEventHandler, ReactNode } from "react";
 
 type Variant = "primary" | "ghost";
 type Size = "md" | "lg";
@@ -23,21 +25,40 @@ type CommonProps = {
   variant?: Variant;
   size?: Size;
   children: ReactNode;
+  className?: string;
 };
 
-type AnchorProps = CommonProps & ComponentProps<typeof Link> & { href: string };
+type AnchorProps = CommonProps & {
+  href: string;
+  onClick?: never;
+  type?: never;
+};
 
-export function Button({
-  variant = "primary",
-  size = "md",
-  children,
-  className,
-  ...rest
-}: AnchorProps) {
-  const classes = `${base} ${variants[variant]} ${sizes[size]} ${className ?? ""}`.trim();
+type ButtonProps = CommonProps & {
+  href?: never;
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  type?: "button" | "submit";
+};
+
+export function Button(props: AnchorProps | ButtonProps) {
+  const { variant = "primary", size = "md", children, className = "" } = props;
+  const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`.trim();
+
+  if ("href" in props && props.href) {
+    return (
+      <Link href={props.href} className={classes}>
+        {children}
+      </Link>
+    );
+  }
+
   return (
-    <Link className={classes} {...rest}>
+    <button
+      type={props.type ?? "button"}
+      onClick={props.onClick}
+      className={classes}
+    >
       {children}
-    </Link>
+    </button>
   );
 }
